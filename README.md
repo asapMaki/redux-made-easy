@@ -1,1 +1,1 @@
-# redux-made-easy
+# Redux-made-easy
