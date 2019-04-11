@@ -22,4 +22,4 @@ function mapStateToProps( state ) {
 
 export default connect( mapStateToProps, {
     setModal,
-} )(withNavigation(CardsContainer));
+} )(withNavigation(MoviesContainer));
