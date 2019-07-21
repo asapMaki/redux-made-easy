@@ -1,28 +1,28 @@
-import {
-    createStackNavigator,
-    createAppContainer
-} from "react-navigation";
+import { createStackNavigator, createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 
 // --------------------------- LOGIN STACK ---------------------------
-import MoviesContainer                       from "../containers/Movies/index";
-//import RegisterContainer                    from "../containers/Login/Register";
+import Movies from '../containers/Movies';
+import Shows from '../containers/Shows';
 
 // ------------------------------ FUNCTION FOR CREATING APP CONTAINER ------------------------------
 export const createRootNavigator = () => {
-    const movieStackNavigator =  createStackNavigator({
-        Movies: {
-            screen: MoviesContainer,         //MOVIES container
-            navigationOptions: {
-                header:null
-            }
+    const navigator = createMaterialTopTabNavigator(
+        {
+            Movies,
+            Shows,
         },
-        /*Movie: {
-            screen: RegisterContainer,      //MOVIE container
-            navigationOptions: {
-                title:"Movie",
-            }
-        }*/
-    });
+        {
+            initialRouteName: 'Movies',
+            defaultNavigationOptions: {
+                header: null,
+            },
+            tabBarOptions: {
+                tabStyle: {
+                    paddingTop: 50,
+                },
+            },
+        },
+    );
 
-    return createAppContainer(movieStackNavigator);
+    return createAppContainer(navigator);
 };
