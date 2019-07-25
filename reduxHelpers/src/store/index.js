@@ -26,7 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 export let store = createStore(
     persistedReducer,
     compose(
-        Reactotron.createEnhancer(),
+        //Reactotron.createEnhancer(),
         applyMiddleware(...middleware),
     ),
 );

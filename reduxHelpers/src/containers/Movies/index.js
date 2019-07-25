@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Movies from '../../components/Movies/index';
+import Movies from '../../components/Movies';
+import * as moviesActions from '../../store/actions/movies';
 import { connect } from 'react-redux';
-import { setModal } from '../../store/actions';
 import { withNavigation } from 'react-navigation';
 
 class MoviesContainer extends Component {
@@ -21,6 +21,6 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     {
-        setModal,
+        ...moviesActions,
     },
 )(withNavigation(MoviesContainer));

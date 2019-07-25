@@ -1,7 +1,7 @@
-import { createAction, createAsyncActionCreator } from '../../constants/redux.helpers';
-import { SET_USER, MODAL } from '../../constants';
-import * as listService from '../../service/list-service';
-import keys from '../keys';
+import { createAction, createAsyncActionCreator } from '../../../constants/redux.helpers';
+import { SET_USER, MODAL } from '../../../constants';
+import * as listService from '../../../service/list-service';
+import keys from '../../keys';
 
 export const getTopTen = (page, type) => createAsyncActionCreator(keys.GET_TOP_TEN, listService.getTopTen, { page, type });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Shows from '../../components/Shows';
 import { connect } from 'react-redux';
-import { setModal } from '../../store/actions';
+import { setModal } from '../../store/actions/movies';
 import { withNavigation } from 'react-navigation';
 
 class ShowsContainer extends Component {

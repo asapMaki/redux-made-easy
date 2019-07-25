@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 
-export default class CardsComponent extends Component {
-    state = {};
+export default class Movies extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: false,
+            query: '',
+            modalIsOpen: false,
+            currentPage: 1,
+        };
+    }
+
+    componentDidMount() {
+        this.props.getTopTen(1, this.state.toggle);
+    }
 
     /*onRefresh = () => {
         this.setState({ isFetching: true }, function() {
@@ -20,6 +32,7 @@ export default class CardsComponent extends Component {
 */
 
     render() {
+        console.tron.log(this.props);
         return <View />;
     }
 }
