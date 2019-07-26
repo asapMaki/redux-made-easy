@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Shows from '../../components/Shows';
 import { connect } from 'react-redux';
-import { setModal } from '../../store/actions/movies';
+import * as showsActions from '../../store/actions/shows';
 import { withNavigation } from 'react-navigation';
 
 class ShowsContainer extends Component {
@@ -15,12 +15,13 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         modal: state.modal,
+        topShows: state.shows.topTen,
     };
 }
 
 export default connect(
     mapStateToProps,
     {
-        setModal,
+        ...showsActions,
     },
 )(withNavigation(ShowsContainer));

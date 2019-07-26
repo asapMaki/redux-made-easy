@@ -21,7 +21,7 @@ const getModal = (state = initalModal, action) => ({
     active: action.active,
 });
 
-const moviesSuccessReducer = (state, action) => {
+const successReducer = (state, action) => {
     let { results } = action.response;
     const existingArray = state.response && state.request.page !== 1 ? state.response.results : [];
     return {
@@ -36,19 +36,19 @@ const moviesSuccessReducer = (state, action) => {
 
 const movies = combineReducers({
     topTen: createAsyncReducer(keys.GET_TOP_TEN, {
-        [`${keys.GET_TOP_TEN}_SUCCESS`]: moviesSuccessReducer,
+        [`${keys.GET_TOP_TEN}_SUCCESS`]: successReducer,
     }),
     Search: createAsyncReducer(keys.SEARCH, {
-        [`${keys.SEARCH}_SUCCESS`]: moviesSuccessReducer,
+        [`${keys.SEARCH}_SUCCESS`]: successReducer,
     }),
 });
 
 const shows = combineReducers({
     topTen: createAsyncReducer(keys.GET_TOP_TEN, {
-        [`${keys.GET_TOP_TEN}_SUCCESS`]: moviesSuccessReducer,
+        [`${keys.GET_TOP_TEN_SHOWS}_SUCCESS`]: successReducer,
     }),
     Search: createAsyncReducer(keys.SEARCH, {
-        [`${keys.SEARCH}_SUCCESS`]: moviesSuccessReducer,
+        [`${keys.SEARCH_SHOWS}_SUCCESS`]: successReducer,
     }),
 });
 

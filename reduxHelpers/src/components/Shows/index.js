@@ -1,9 +1,22 @@
-import React, { Component }                                             from 'react';
-import { FlatList, View }                                             from 'react-native';
-
+import React, { Component } from 'react';
+import { FlatList, View } from 'react-native';
 
 export default class CardsComponent extends Component {
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: false,
+            query: '',
+            modalIsOpen: false,
+            toggle: 'false',
+            currentPage: 1,
+        };
+    }
+
+    componentDidMount() {
+        this.props.getTopTenShows(1, 'tv');
+        console.tron.log('Props: ', this.props);
+    }
 
     /*onRefresh = () => {
         this.setState({ isFetching: true }, function() {
@@ -13,7 +26,7 @@ export default class CardsComponent extends Component {
         });
     };*/
 
-/*
+    /*
     handleLoadMore = (info) => {
         //here load data from your backend
         console.warn("asdas");
@@ -23,7 +36,6 @@ export default class CardsComponent extends Component {
     render() {
         return (
             <View>
-
                 {/*<FlatList
                     data={[
                         {key: 'a'}, {key: 'b'}, {key: '2'}, {key: '3'}, {key: '1'}, {key: '9'}, {key: 'bd'},
