@@ -8,12 +8,14 @@ export default class Movies extends Component {
             search: false,
             query: '',
             modalIsOpen: false,
+            toggle: 'false',
             currentPage: 1,
         };
     }
 
     componentDidMount() {
-        this.props.getTopTen(1, this.state.toggle);
+        this.props.getTopTen(1, 'movie');
+        console.tron.log('Props: ', this.props);
     }
 
     /*onRefresh = () => {
@@ -32,7 +34,6 @@ export default class Movies extends Component {
 */
 
     render() {
-        console.tron.log(this.props);
         return <View />;
     }
 }

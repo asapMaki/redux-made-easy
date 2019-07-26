@@ -15,6 +15,7 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         modal: state.modal,
+        topMovies: state.movies.topTen,
     };
 }
 
