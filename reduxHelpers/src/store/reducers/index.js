@@ -34,7 +34,16 @@ const moviesSuccessReducer = (state, action) => {
     };
 };
 
-const moviesReducer = combineReducers({
+const movies = combineReducers({
+    topTen: createAsyncReducer(keys.GET_TOP_TEN, {
+        [`${keys.GET_TOP_TEN}_SUCCESS`]: moviesSuccessReducer,
+    }),
+    Search: createAsyncReducer(keys.SEARCH, {
+        [`${keys.SEARCH}_SUCCESS`]: moviesSuccessReducer,
+    }),
+});
+
+const shows = combineReducers({
     topTen: createAsyncReducer(keys.GET_TOP_TEN, {
         [`${keys.GET_TOP_TEN}_SUCCESS`]: moviesSuccessReducer,
     }),
@@ -46,5 +55,6 @@ const moviesReducer = combineReducers({
 export const rootReducer = combineReducers({
     user: createReducer(initialUser, { [`${keys.SET_USER}`]: setUser }),
     modal: createReducer(initalModal, { [`${keys.MODAL}`]: getModal }),
-    movies: moviesReducer,
+    movies,
+    shows,
 });

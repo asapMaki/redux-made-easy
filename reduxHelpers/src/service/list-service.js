@@ -4,7 +4,6 @@ export const getTopTen = async ({ page, type }) => {
     const fullUrl = createDbUrl(`/${type}/top_rated`, {
         page,
     });
-    console.tron.log(fullUrl);
     return fetch(fullUrl);
 };
 
