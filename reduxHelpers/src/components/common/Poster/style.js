@@ -11,23 +11,25 @@ export default (styles = ScaledSheet.create({
         flexDirection: 'column-reverse',
     },
     textContainer: {
-        height: '40@vs',
+        height: '48@vs',
         backgroundColor: '#0004',
         flexDirection: 'row',
         alignItems: 'center',
     },
     textStyle: {
         color: 'rgba(245, 222, 80, 1)',
-        textAlign: 'center',
-        textAlignVertical: 'center',
     },
     titleStyle: {
         flex: 3,
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        textAlign: 'center',
     },
     scoreStyle: {
         flex: 2,
         height: '100%',
+        justifyContent: 'center',
         backgroundColor: '#0006',
-        paddingTop: '13@vs',
+        alignItems: 'center',
     },
 }));

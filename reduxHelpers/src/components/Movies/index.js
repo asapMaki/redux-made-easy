@@ -15,10 +15,23 @@ export default class Movies extends Component {
         };
     }
 
+    movies = [];
+
     componentDidMount() {
         this.props.getTopTen(1, 'movie');
         console.tron.log('Props: ', this.props);
     }
+
+    renderRow = ({ item, index }) => {
+        if (index % 2 != 0) return;
+
+        return (
+            <View style={styles.row}>
+                <Poster movie={item} />
+                <Poster movie={this.movies[index + 1]} />
+            </View>
+        );
+    };
 
     render() {
         let {
@@ -27,16 +40,11 @@ export default class Movies extends Component {
                 response,
             },
         } = this.props;
-        console.tron.log(response);
-        let movies = getList(response);
-        console.tron.log('Movies: ', movies);
+        this.movies = getList(response);
 
         return (
             <View style={styles.container}>
-                <View style={styles.row}>
-                    <Poster movie={movies[0]} />
-                    <Poster movie={movies[1]} />
-                </View>
+                <FlatList data={this.movies} renderItem={this.renderRow} />
             </View>
         );
     }

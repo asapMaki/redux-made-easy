@@ -17,14 +17,13 @@ export default class Poster extends Component {
         const { container, textContainer, textStyle, titleStyle, scoreStyle, imageStyle } = styles;
         return (
             <View style={container}>
-                <ImageBackground style={imageStyle} source={{ uri: imageURI }} resizeMode='contain'>
-                    <View style={textContainer}>
-                        <Text style={[textStyle, titleStyle]}>{title}</Text>
-                        <View style={scoreStyle}>
-                            <Text style={[textStyle]}>{score}</Text>
-                        </View>
+                <ImageBackground style={imageStyle} source={{ uri: imageURI }} resizeMode='contain' />
+                <View style={textContainer}>
+                    <Text style={[textStyle, titleStyle]}>{title}</Text>
+                    <View style={scoreStyle}>
+                        <Text style={[textStyle]}>{score}</Text>
                     </View>
-                </ImageBackground>
+                </View>
             </View>
         );
     }
