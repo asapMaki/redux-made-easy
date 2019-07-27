@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import styles from './style';
-import Poster from '../common/Poster';
+import { renderRow } from '../common/Row';
 import { getList } from '../../service/helpers';
 export default class Movies extends Component {
     constructor(props) {
@@ -15,23 +15,12 @@ export default class Movies extends Component {
         };
     }
 
-    movies = [];
+    list = [];
 
     componentDidMount() {
         this.props.getTopTen(1, 'movie');
         console.tron.log('Props: ', this.props);
     }
-
-    renderRow = ({ item, index }) => {
-        if (index % 2 != 0) return;
-
-        return (
-            <View style={styles.row}>
-                <Poster movie={item} />
-                <Poster movie={this.movies[index + 1]} />
-            </View>
-        );
-    };
 
     render() {
         let {
@@ -40,11 +29,11 @@ export default class Movies extends Component {
                 response,
             },
         } = this.props;
-        this.movies = getList(response);
+        this.list = getList(response);
 
         return (
             <View style={styles.container}>
-                <FlatList data={this.movies} renderItem={this.renderRow} />
+                <FlatList data={this.list} renderItem={({ item, index }) => renderRow({ index, item, list: this.list })} />
             </View>
         );
     }
