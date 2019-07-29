@@ -3,6 +3,7 @@ import { FlatList, View } from 'react-native';
 import styles from './style';
 import { renderRow } from '../common/Row';
 import { getList } from '../../service/helpers';
+import { FloatingButton } from '../common/FloatingButton';
 export default class Movies extends Component {
     constructor(props) {
         super(props);
@@ -61,6 +62,7 @@ export default class Movies extends Component {
                         this.onEndReachedCalledDuringMomentum = false;
                     }}
                 />
+                <FloatingButton />
             </View>
         );
     }
