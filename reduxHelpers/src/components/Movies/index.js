@@ -25,11 +25,11 @@ export default class Movies extends Component {
     render() {
         let {
             topMovies: {
-                //response: { results: movies },
-                response,
+                topMovies: { response: movies },
             },
         } = this.props;
-        this.list = getList(response);
+        console.tron.log(movies);
+        this.list = getList(movies);
 
         return (
             <View style={styles.container}>

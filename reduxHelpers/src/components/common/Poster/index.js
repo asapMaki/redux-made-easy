@@ -12,14 +12,14 @@ export default class Poster extends Component {
 
     render() {
         const {
-            movie: { poster_path: imageURI, title, vote_average: score },
+            item: { poster_path: imageURI, title, vote_average: score, name },
         } = this.props;
         const { container, textContainer, textStyle, titleStyle, scoreStyle, imageStyle } = styles;
         return (
             <View style={container}>
                 <ImageBackground style={imageStyle} source={{ uri: imageURI }} resizeMode='contain' />
                 <View style={textContainer}>
-                    <Text style={[textStyle, titleStyle]}>{title}</Text>
+                    <Text style={[textStyle, titleStyle]}>{!name ? title : name}</Text>
                     <View style={scoreStyle}>
                         <Text style={[textStyle]}>{score}</Text>
                     </View>

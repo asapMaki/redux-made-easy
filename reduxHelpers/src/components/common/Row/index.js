@@ -8,8 +8,8 @@ export const renderRow = ({ index, item, list }) => {
 
     return (
         <View style={styles.row}>
-            <Poster movie={item} />
-            <Poster movie={list[index + 1]} />
+            <Poster item={item} />
+            <Poster item={list[index + 1]} />
         </View>
     );
 };
