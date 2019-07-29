@@ -52,25 +52,15 @@ const listSuccessReducer2 = (state, action) => {
 };
 
 const listSuccessReducer = (state, action) => {
-    console.tron.log('Statem, action:', state, action);
     let { results } = action.response;
     const existingArray = state.response && action.response.page != 1 ? state.response.results : [];
-    const sliceLength = results.length > 20 ? 20 : results.length;
-    console.tron.log('Existing: ', existingArray, state.request.page !== 1);
-    console.tron.log('results:', {
-        ...state,
-        isLoading: false,
-        response: {
-            ...action.response,
-            results: [...existingArray, ...results.slice(0, sliceLength)],
-        },
-    });
+    const sliceLength = results.length > 10 ? 10 : results.length;
     return {
         ...state,
         isLoading: false,
         response: {
             ...action.response,
-            results: [...existingArray, ...results],
+            results: [...existingArray, ...results.slice(0, sliceLength)],
         },
     };
 };

@@ -20,24 +20,22 @@ export default class CardsComponent extends Component {
 
     componentDidMount() {
         this.props.getTopTenShows(1, 'tv');
-        console.tron.log('props:', this.props.topShows);
     }
 
     handleLoadMore = () => {
         if (!this.onEndReachedCalledDuringMomentum) {
-            console.tron.log('Before: ', this.onEndReachedCalledDuringMomentum);
-
             const { currentPage } = this.state;
-            console.tron.log('newPage');
             let newPage = currentPage + 1;
 
             this.setState({ currentPage: newPage }, () => {
                 const { currentPage } = this.state;
-                console.tron.log(currentPage);
                 this.props.getTopTenShows(currentPage, 'tv');
             });
 
             this.onEndReachedCalledDuringMomentum = true;
+            setTimeout(() => {
+                this.onEndReachedCalledDuringMomentum = false;
+            }, 1000);
         }
     };
 
@@ -46,6 +44,7 @@ export default class CardsComponent extends Component {
             topShows: { response },
         } = this.props;
         list = getList(response);
+
         return (
             <View>
                 <FlatList
