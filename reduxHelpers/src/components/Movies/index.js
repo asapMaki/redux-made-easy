@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, TextInput } from 'react-native';
 import styles from './style';
 import { renderRow } from '../common/Row';
 import { getList } from '../../service/helpers';
 import { FloatingButton } from '../common/FloatingButton';
+import * as Animatable from 'react-native-animatable';
+
 export default class Movies extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +15,7 @@ export default class Movies extends Component {
             modalIsOpen: false,
             toggle: 'false',
             currentPage: 1,
+            searchVisible: false,
         };
     }
 
@@ -44,6 +47,10 @@ export default class Movies extends Component {
         this.refs.listRef.scrollToOffset({ x: 0, y: 0, animated: true });
     };
 
+    openSearch = () => {
+        this.setState({ searchVisible: !this.state.searchVisible });
+    };
+
     render() {
         let {
             topMovies: {
@@ -54,19 +61,27 @@ export default class Movies extends Component {
 
         return (
             <View style={styles.container}>
-                <FlatList
-                    data={this.list}
-                    renderItem={({ item, index }) => renderRow({ index, item, list: this.list })}
-                    //refreshing={this.props.topMovies.topMovies.isLoading}
-                    //onRefresh={this.onRefresh}
-                    onEndReached={this.handleLoadMore}
-                    onEndReachedThreshold={0.5}
-                    onMomentumScrollBegin={() => {
-                        this.onEndReachedCalledDuringMomentum = false;
-                    }}
-                    ref='listRef'
-                />
-                <FloatingButton flatListRef={this.scrollToTop} />
+                {this.state.searchVisible ? (
+                    <Animatable.View animation='fadeInDown' style={{ height: '10%', width: '100%' }}>
+                        <TextInput />
+                    </Animatable.View>
+                ) : null}
+
+                <Animatable.View style={{}}>
+                    <FlatList
+                        data={this.list}
+                        renderItem={({ item, index }) => renderRow({ index, item, list: this.list })}
+                        //refreshing={this.props.topMovies.topMovies.isLoading}
+                        //onRefresh={this.onRefresh}
+                        onEndReached={this.handleLoadMore}
+                        onEndReachedThreshold={0.5}
+                        onMomentumScrollBegin={() => {
+                            this.onEndReachedCalledDuringMomentum = false;
+                        }}
+                        ref='listRef'
+                    />
+                </Animatable.View>
+                <FloatingButton flatListRef={this.scrollToTop} openSearch={this.openSearch} />
             </View>
         );
     }

@@ -9,18 +9,12 @@ export const FloatingButton = (props) => {
             icon: require('../../../assets/btn-images/uparrow.png'),
             name: 'btn_top',
             position: 0,
-            execute: () => {
-                props.flatListRef();
-            },
         },
         {
             text: 'Search',
             icon: require('../../../assets/btn-images/search-icon-png-27.png'),
             name: 'btn_search',
             position: 0,
-            execute: () => {
-                console.tron.log('Search');
-            },
         },
     ];
 
@@ -45,7 +39,7 @@ export const FloatingButton = (props) => {
                         props.flatListRef();
                         break;
                     case 'btn_search':
-                        props.flatListRef();
+                        props.openSearch();
                         break;
                     default:
                         break;
