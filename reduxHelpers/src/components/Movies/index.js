@@ -18,10 +18,9 @@ export default class Movies extends Component {
 
     list = [];
     onEndReachedCalledDuringMomentum = null;
-
+    listRef = null;
     componentDidMount() {
         this.props.getTopTen(1, 'movie');
-        console.tron.log('Props movie: ', this.props);
     }
 
     handleLoadMore = () => {
@@ -41,6 +40,10 @@ export default class Movies extends Component {
         }
     };
 
+    scrollToTop = () => {
+        this.refs.listRef.scrollToOffset({ x: 0, y: 0, animated: true });
+    };
+
     render() {
         let {
             topMovies: {
@@ -54,15 +57,16 @@ export default class Movies extends Component {
                 <FlatList
                     data={this.list}
                     renderItem={({ item, index }) => renderRow({ index, item, list: this.list })}
-                    //refreshing={this.state.isFetching}
+                    //refreshing={this.props.topMovies.topMovies.isLoading}
                     //onRefresh={this.onRefresh}
                     onEndReached={this.handleLoadMore}
                     onEndReachedThreshold={0.5}
                     onMomentumScrollBegin={() => {
                         this.onEndReachedCalledDuringMomentum = false;
                     }}
+                    ref='listRef'
                 />
-                <FloatingButton />
+                <FloatingButton flatListRef={this.scrollToTop} />
             </View>
         );
     }

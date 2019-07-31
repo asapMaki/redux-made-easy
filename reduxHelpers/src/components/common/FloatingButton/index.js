@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action';
 
-export const FloatingButton = () => {
+export const FloatingButton = (props) => {
     const actions = [
         {
             text: 'Top',
@@ -10,7 +10,7 @@ export const FloatingButton = () => {
             name: 'bt_accessibility',
             position: 0,
             execute: () => {
-                console.tron.log('TOP');
+                //this.listRef.getNode().scrollToOffset({ offset: 0, animated: true });
             },
         },
         {
@@ -32,12 +32,13 @@ export const FloatingButton = () => {
     };
 
     doAction = (name) => {};
-
+    console.tron.log('Props', props);
     return (
         <FloatingAction
             actions={actions}
             onPressItem={(name) => {
                 findActionIndex(name);
+                props.flatListRef();
             }}
             onPressBackdrop={() => {
                 console.tron.log('Test');
