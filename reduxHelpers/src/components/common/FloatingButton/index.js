@@ -3,19 +3,19 @@ import { View } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action';
 
 export const FloatingButton = (props) => {
-    const actions = [
+    let actions = [
         {
-            text: 'Top',
-            icon: require('../../../assets/btn-images/arrow-up-solid.svg'),
-            name: 'bt_accessibility',
+            text: 'Scroll to top',
+            icon: require('../../../assets/btn-images/uparrow.png'),
+            name: 'btn_top',
             position: 0,
             execute: () => {
-                //this.listRef.getNode().scrollToOffset({ offset: 0, animated: true });
+                props.flatListRef();
             },
         },
         {
             text: 'Search',
-            icon: require('../../../assets/btn-images/arrow-up-solid.svg'),
+            icon: require('../../../assets/btn-images/uparrow.png'),
             name: 'bt_top',
             position: 0,
             execute: () => {
@@ -24,21 +24,30 @@ export const FloatingButton = (props) => {
         },
     ];
 
-    findActionIndex = (name) => {
-        actions.forEach((action) => {
-            if (action.name === name) action.execute();
-            return;
-        });
+    doActions = (key) => {
+        func = null;
+        switch (key) {
+            case 'btn_top':
+                props.flatListRef();
+                break;
+
+            default:
+                break;
+        }
     };
 
-    doAction = (name) => {};
-    console.tron.log('Props', props);
     return (
         <FloatingAction
             actions={actions}
             onPressItem={(name) => {
-                findActionIndex(name);
-                props.flatListRef();
+                switch (name) {
+                    case 'btn_top':
+                        props.flatListRef();
+                        break;
+
+                    default:
+                        break;
+                }
             }}
             onPressBackdrop={() => {
                 console.tron.log('Test');

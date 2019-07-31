@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import { getList } from '../../service/helpers';
 import { renderRow } from '../common/Row';
+import { FloatingButton } from '../common/FloatingButton';
 
 export default class CardsComponent extends Component {
     constructor(props) {
@@ -39,6 +40,10 @@ export default class CardsComponent extends Component {
         }
     };
 
+    scrollToTop = () => {
+        this.refs.listRef.scrollToOffset({ x: 0, y: 0, animated: true });
+    };
+
     render() {
         let {
             topShows: { response },
@@ -57,7 +62,9 @@ export default class CardsComponent extends Component {
                     onMomentumScrollBegin={() => {
                         this.onEndReachedCalledDuringMomentum = false;
                     }}
+                    ref='listRef'
                 />
+                <FloatingButton flatListRef={this.scrollToTop} />
             </View>
         );
     }
